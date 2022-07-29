@@ -3,7 +3,7 @@
     <TitleComponent />
     <FormComponent @addNew="addTodo" />
     <FilterComponent />
-    <ListComponent :items="filteredTodos.length > 0 ? filteredTodos : todos" @onUpdate="updateStatus"
+    <ListComponent :items="filter !== null ? filteredTodos : todos" @onUpdate="updateStatus"
       @onRemove="removeTodo" />
   </v-app>
 </template>
@@ -57,13 +57,12 @@ export default {
       this.updateCached();
     },
     updateStatus(todo) {
-
       this.todos.map(item => {
         if (item.id === todo.id) {
           item.status = item.status === 'Pending' ? 'Done' : 'Pending';
         }
         return;
-      })
+      });
       this.updateCached();
     },
     updateCached: async function () {
@@ -75,6 +74,9 @@ export default {
     filter: {
       get() {
         return this.$store.state.filter;
+      },
+      set(filter) {
+        this.$store.dispatch('setFilters', filter);
       }
     },
   },
@@ -87,14 +89,6 @@ export default {
           return item;
         }
       })
-
-      // console.log(value);
-      // if (this.todos.length > 0) {
-
-      // } else {
-      //   this.filteredTodos = this.todos
-      // }
-
     },
   }
 }
