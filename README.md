@@ -1,4 +1,4 @@
-# my-app
+# ToDo App
 
 ## Project setup
 ```
