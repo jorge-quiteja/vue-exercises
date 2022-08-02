@@ -1,68 +1,79 @@
 <template>
-    <div>
-        <ul class="list">
-            <li v-for="item in items" :key="item.id">
-                <span @click="$emit('onUpdate', item)" :class="['subtitle-2 ', item.status ]">
-                    {{ item.title }}
-                </span>
-                <div class="buttons">
-                    <v-btn @click="$emit('onUpdate', item)"  v-if="item.status === 'Pending'" class="success">
-                        <v-icon>mdi-checkbox-marked-circle</v-icon>
-                    </v-btn>
-                    <v-btn @click="$emit('onUpdate', item)" v-if="item.status === 'Done'" class="secondary">
-                        <v-icon>mdi-cached</v-icon>
-                    </v-btn>
-                    <v-btn @click="$emit('onRemove', item.id)" color="error">
-                        <v-icon>mdi-cancel</v-icon>
-                    </v-btn>
-                </div>
-            </li>
-        </ul>
-    </div>
+  <div>
+    <ul class="list">
+      <li v-for="item in items" :key="item.id">
+        <span
+          @click="$emit('onUpdate', item)"
+          :class="['subtitle-2 ', item.status]"
+        >
+          {{ item.title }}
+        </span>
+        <div class="buttons">
+          <v-btn
+            @click="$emit('onUpdate', item)"
+            v-if="item.status === 'Pending'"
+            class="success"
+          >
+            <v-icon>mdi-checkbox-marked-circle</v-icon>
+          </v-btn>
+          <v-btn
+            @click="$emit('onUpdate', item)"
+            v-if="item.status === 'Done'"
+            class="secondary"
+          >
+            <v-icon>mdi-arrow-u-left-bottom</v-icon>
+          </v-btn>
+          <v-btn @click="$emit('onRemove', item.id)" color="error">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "ListComponent",
-    emits: ['onUpdate', 'onRemove'],
-    props: {
-        items: Array,
-    },
-    computed: {},
-    methods: {},
-    watch: {}
-}
+  name: "ListComponent",
+  emits: ["onUpdate", "onRemove"],
+  props: {
+    items: Array,
+  },
+  computed: {},
+  methods: {},
+  watch: {},
+};
 </script>
 
 <style scoped>
 .list {
-    text-align: start;
+  text-align: start;
 }
 
 .list li {
-    margin: 5% 10px 10px;
-    display: flex;
-    justify-content: space-between;
+  margin: 5% 10px 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .list li span {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .subtitle-2 {
-    align-self: center;
+  align-self: center;
 }
 
 .Done {
-    color: grey;
-    text-decoration: line-through;
+  color: grey;
+  text-decoration: line-through;
 }
 
 .buttons button {
-    margin: 0px 5px;
+  margin: 0px 5px;
 }
 
 .donned {
-    display: none;
+  display: none;
 }
 </style>

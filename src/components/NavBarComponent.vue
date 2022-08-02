@@ -1,45 +1,49 @@
 <template>
-    <v-app-bar app color="light" dark>
-        <div class="align-center">
-            <v-img alt="Vuetify Logo" title="Vuetify Logo" contain
-                src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png" width="30" />
-        </div>
-        <div class="router-links">
-            <router-link to="/home">Home</router-link>
-            <router-link to="/about">About</router-link>
-        </div>
-    </v-app-bar>
+  <v-app-bar app dark>
+    <div class="align-center">
+      <v-img
+        alt="Vuetify Logo"
+        title="Vuetify Logo"
+        contain
+        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+        width="30"
+      />
+    </div>
+    <div class="router-links">
+      <router-link to="/home">Home</router-link>
+      <router-link to="/about">About</router-link>
+    </div>
+  </v-app-bar>
 </template>
 
 <script>
 export default {
-    name: "NavBarComponent"
-}
+  name: "NavBarComponent",
+};
 </script>
 
 <style scoped>
 .v-app-bar div {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .router-links {
-    display: flex;
+  display: flex;
 }
 
 a {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    margin-left: 2rem;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-left: 2rem;
 }
 
 a .router-link-exact-active {
-    color: #42b983;
+  color: #42b983;
 }
 
-
 a:visited {
-    color: white;
+  color: white;
 }
 </style>
