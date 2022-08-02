@@ -4,7 +4,7 @@
             v-model="valid">
             <v-row>
                 <v-col cols="10">
-                    <v-text-field label="Add new" v-model="item" :rules="rules" hide-details="auto">
+                    <v-text-field label="Add new" v-model="item" :rules="rules" hide-details="auto" hint="For example, Take Shower">
                     </v-text-field>
                 </v-col>
                 <v-col cols="2">
