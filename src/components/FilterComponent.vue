@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .switch-container {
     display: flex;
     width: 50%;

@@ -17,7 +17,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-app-bar div {
     justify-content: space-between;
 }

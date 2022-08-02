@@ -43,7 +43,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-form {
     width: 90%;
     margin: 0 auto;
