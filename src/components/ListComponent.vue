@@ -4,21 +4,21 @@
       <li v-for="item in items" :key="item.id">
         <span
           @click="$emit('onUpdate', item)"
-          :class="['subtitle-2 ', item.status]"
+          :class="['subtitle-2 ', item.progress]"
         >
           {{ item.title }}
         </span>
         <div class="buttons">
           <v-btn
             @click="$emit('onUpdate', item)"
-            v-if="item.status === 'Pending'"
+            v-if="item.progress === 'Pending'"
             class="success"
           >
             <v-icon>mdi-checkbox-marked-circle</v-icon>
           </v-btn>
           <v-btn
             @click="$emit('onUpdate', item)"
-            v-if="item.status === 'Done'"
+            v-if="item.progress === 'Done'"
             class="secondary"
           >
             <v-icon>mdi-arrow-u-left-bottom</v-icon>
