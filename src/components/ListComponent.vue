@@ -10,20 +10,20 @@
         </span>
         <div class="buttons">
           <v-btn
-            @click="$emit('onUpdate', item)"
+            @click="updateStatus(item)"
             v-if="item.progress === 'Pending'"
             class="success"
           >
             <v-icon>mdi-checkbox-marked-circle</v-icon>
           </v-btn>
           <v-btn
-            @click="$emit('onUpdate', item)"
+            @click="updateStatus(item)"
             v-if="item.progress === 'Done'"
             class="secondary"
           >
             <v-icon>mdi-arrow-u-left-bottom</v-icon>
           </v-btn>
-          <v-btn @click="$emit('onRemove', item.id)" color="error">
+          <v-btn @click="removeItem(item.id)" color="error">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </div>
@@ -33,14 +33,25 @@
 </template>
 
 <script>
+import { mapActions} from 'vuex';
+
 export default {
   name: "ListComponent",
   emits: ["onUpdate", "onRemove"],
   props: {
     items: Array,
   },
-  computed: {},
-  methods: {},
+  computed: {
+    // ...mapState({
+    //   items: state => state.todos
+    // })
+  },
+  methods: {
+    ...mapActions({
+      updateStatus: 'updateStatus',
+      removeItem: 'removeItem',
+    })
+  },
   watch: {},
 };
 </script>
