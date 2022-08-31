@@ -3,7 +3,6 @@
     <v-switch
       v-model="filters"
       color="success"
-      direction="vertical"
       label="Done"
       value="Done"
     ></v-switch>
