@@ -5,7 +5,6 @@
         class="d-flex justify-space-between ma-3"
         v-for="item in items"
         :key="item.id"
-
       >
         <span
           @click="updateTodoStatus(item)"

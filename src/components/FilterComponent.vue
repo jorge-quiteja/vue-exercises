@@ -2,15 +2,15 @@
   <v-container class="d-flex justify-space-around my-0 mx-auto" fluid>
     <v-switch
       v-model="filters"
-      color="success"
-      label="Done"
-      value="Done"
+      color="blue-grey"
+      label="Pending"
+      value="Pending"
     ></v-switch>
     <v-switch
       v-model="filters"
-      color="orange"
-      label="Pending"
-      value="Pending"
+      color="success"
+      label="Done"
+      value="Done"
     ></v-switch>
   </v-container>
 </template>
