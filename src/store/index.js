@@ -5,37 +5,34 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    filter: null,
+    filterTodos: null,
     todos: [
-      {id: 1661889443161, title: "Exemplo 1", progress: "Pending"},
-      {id: 1661890676842, title: "Exemplo 2", progress: "Pending"},
-      {id: 1661890677909, title: "Exemplo 3", progress: "Done"},
-      {id: 1661891050039, title: "Exemplo 4", progress: "Done"}
+      { id: 1661889443161, title: "Exemplo 1", progress: "Pending" },
+      { id: 1661890676842, title: "Exemplo 2", progress: "Pending" },
+      { id: 1661890677909, title: "Exemplo 3", progress: "Done" },
+      { id: 1661891050039, title: "Exemplo 4", progress: "Done" }
     ],
     filteredTodos: []
   },
-  getters: {},
+  getters: {
+    todoList(state) {
+      if (state.filterTodos === null) {
+        return state.todos;
+      } else {
+        return state.todos.filter(t => t.progress === state.filterTodos);
+      }
+    }
+  },
   mutations: {
     setTodos(state, todos) {
       state.todos = todos;
     },
     setFilter(state, filter) {
-      state.filter = filter
+      state.filterTodos = filter
     },
-
   },
   actions: {
-    // fetchTodos({ commit }) {
-    //   return new Promise((resolve, reject) => {
-    //     var cached = JSON.parse(localStorage.getItem("todos"));
-    //     if (cached) {
-    //       commit("setProducts", cached);
-    //       resolve();
-    //     }
-    //     reject();
-    //   })
-    // },
-    addTodo({state, commit}, todoName) {
+    addTodo({ state, commit }, todoName) {
       let todosToAdd = state.todos;
       let date = new Date();
 
@@ -51,7 +48,7 @@ export default new Vuex.Store({
     updateTodoStatus({ state, commit }, todo) {
       let updatedTodos = state.todos.filter(t => {
         if (t.id == todo.id) {
-          t.progress = (t.progress === "Pending" ? "Done" : "Pending");
+          t.progress = t.progress === "Pending" ? "Done" : "Pending";
         }
         return t;
       });
@@ -59,16 +56,22 @@ export default new Vuex.Store({
       commit('setTodos', updatedTodos);
     },
     removeTodo({ state, commit }, todoId) {
-      let todosToRemove = state.todos.filter(t => {
-        if (t.id !== todoId) {
-          return t;
-        }
-      });
+      let todosToRemove = state.todos.filter(t => t.id !== todoId);
 
       commit('setTodos', todosToRemove);
     },
     setFilter({ commit }, filter) {
       commit('setFilter', filter);
     },
+    // fetchTodos({ commit }) {
+    //   return new Promise((resolve, reject) => {
+    //     var cached = JSON.parse(localStorage.getItem("todos"));
+    //     if (cached) {
+    //       commit("setProducts", cached);
+    //       resolve();
+    //     }
+    //     reject();
+    //   })
+    // },
   },
 });

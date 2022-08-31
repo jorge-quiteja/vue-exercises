@@ -3,9 +3,7 @@
     <TitleComponent />
     <FormComponent />
     <FilterComponent />
-    <ListComponent
-      :items="filter !== null ? filteredTodos : todos"
-    />
+    <ListComponent />
   </v-app>
 </template>
 
@@ -18,47 +16,31 @@ import ListComponent from "../components/ListComponent.vue";
 export default {
   name: "HomeView",
   components: {
-    TitleComponent,
     FormComponent,
+    TitleComponent,
     FilterComponent,
     ListComponent,
   },
   async beforeCreate() {
     var cached = await JSON.parse(localStorage.getItem("todos"));
     if (cached) {
-      this.todos = cached;
+      // this.todos = cached;
+      return;
     }
   },
   data: () => ({
-    todos: [],
-    filteredTodos: [],
+    // todos: [],
+    // filteredTodos: [],
   }),
   methods: {
-    updateCached: async function () {
-      await localStorage.removeItem("todos");
-      await localStorage.setItem("todos", JSON.stringify(this.todos));
-    },
+    // updateCached: async function () {
+    //   await localStorage.removeItem("todos");
+    //   await localStorage.setItem("todos", JSON.stringify(this.todos));
+    // },
   },
   computed: {
-    filter: {
-      get() {
-        return this.$store.state.filter;
-      },
-      set(filter) {
-        this.$store.dispatch("setFilters", filter);
-      },
-    },
   },
   watch: {
-    filter(value) {
-      this.filteredTodos = this.todos.filter((item) => {
-        if (value === item.progress) {
-          return item;
-        } else if (value === !item.progress) {
-          return item;
-        }
-      });
-    },
   },
 };
 </script>

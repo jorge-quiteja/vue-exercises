@@ -1,8 +1,7 @@
 <template>
-  <v-container class="switch-container" fluid>
+  <v-container class="d-flex justify-space-around my-0 mx-auto" fluid>
     <v-switch
-      @change="onFilter"
-      :disabled="filterActive === 'Pending'"
+      :disabled="filters === 'Pending'"
       v-model="filters"
       color="success"
       direction="vertical"
@@ -10,8 +9,7 @@
       value="Done"
     ></v-switch>
     <v-switch
-      @change="onFilter"
-      :disabled="filterActive === 'Done'"
+      :disabled="filters === 'Done'"
       v-model="filters"
       color="orange"
       label="Pending"
@@ -21,41 +19,35 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   name: "FilterComponent",
   data: () => {
-    return {
-      filterActive: "none",
-    };
-  },
-  methods: {
-    onFilter(e) {
-      this.filterActive = e;
-      return;
-    },
+    return {}
   },
   computed: {
+    ...mapState({
+      filterTodos: (state) => state.filterTodos,
+    }),
     filters: {
       get() {
-        return this.$store.state.filters;
+        return this.filterTodos;
       },
       set(filter) {
-        this.$store.dispatch("setFilters", filter);
+        this.setFilter(filter);
       },
     },
+  },
+  methods: {
+    ...mapActions({
+      setFilter: "setFilter",
+    }),
   },
 };
 </script>
 
 <style scoped>
-.switch-container {
-  display: flex;
+.d-flex {
   width: 50%;
-  justify-content: space-around;
-  margin-left: 0 auto;
-}
-
-.switch-container .v-input {
-  margin-left: 1em;
 }
 </style>

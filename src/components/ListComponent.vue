@@ -1,10 +1,14 @@
 <template>
   <div>
-    <ul class="list">
-      <li v-for="item in items" :key="item.id">
+    <ul class="list text-start">
+      <li
+        class="d-flex justify-space-between mt-5 mx-3"
+        v-for="item in items"
+        :key="item.id"
+      >
         <span
           @click="updateTodoStatus(item)"
-          :class="['subtitle-2 ', item.progress]"
+          :class="['align-self-center ', item.progress]"
         >
           {{ item.title }}
         </span>
@@ -33,18 +37,14 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "ListComponent",
-  emits: ["onUpdate", "onRemove"],
-  props: {
-    // items: Array,
-  },
   computed: {
-    ...mapState({
-      items: state => state.todos
-    })
+    ...mapGetters({
+      items: "todoList",
+    }),
   },
   methods: {
     ...mapActions({
@@ -52,39 +52,20 @@ export default {
       removeTodo: "removeTodo",
     }),
   },
-  watch: {},
 };
 </script>
 
 <style scoped>
-.list {
-  text-align: start;
-}
-
-.list li {
-  margin: 5% 10px 10px;
-  display: flex;
-  justify-content: space-between;
-}
-
 .list li span {
   cursor: pointer;
 }
 
-.subtitle-2 {
-  align-self: center;
-}
-
 .Done {
-  color: grey;
+  color: #9e9e9e;
   text-decoration: line-through;
 }
 
 .buttons button {
-  margin: 0px 5px;
-}
-
-.donned {
-  display: none;
+  margin: 0px 8px;
 }
 </style>
