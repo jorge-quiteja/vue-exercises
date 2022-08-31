@@ -11,7 +11,7 @@
         <v-col cols="10">
           <v-text-field
             label="Add new"
-            v-model="item"
+            v-model="todoName"
             :rules="rules"
             hide-details="auto"
             hint="For example, Take Shower"
@@ -29,21 +29,24 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex';
 export default {
   name: "FormComponent",
-  emits: ["addNew"],
   data: () => ({
     valid: false,
-    item: "",
+    todoName: "",
     rules: [
       (value) => !!value || "Required.",
       (value) => (value && value.length >= 3) || "Min 3 characters",
     ],
   }),
   methods: {
+    ...mapActions({
+      addTodo: 'addTodo'
+    }),
     formSubmit: function () {
-      if (this.item.length > 2) {
-        this.$emit("addNew", this.item);
+      if (this.todoName.length > 2) {
+        this.addTodo(this.todoName);
         this.$refs.appForm.reset();
         this.$refs.appForm.inputs[0].blur();
         return;

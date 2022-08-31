@@ -1,12 +1,10 @@
 <template>
   <v-app class="home">
     <TitleComponent />
-    <FormComponent @addNew="addTodo" />
+    <FormComponent />
     <FilterComponent />
     <ListComponent
       :items="filter !== null ? filteredTodos : todos"
-      @onUpdate="updateStatus"
-      @onRemove="removeTodo"
     />
   </v-app>
 </template>
@@ -26,7 +24,6 @@ export default {
     ListComponent,
   },
   async beforeCreate() {
-    
     var cached = await JSON.parse(localStorage.getItem("todos"));
     if (cached) {
       this.todos = cached;
@@ -37,38 +34,6 @@ export default {
     filteredTodos: [],
   }),
   methods: {
-    addTodo: function (todo) {
-      var date = new Date();
-
-      var newTodo = {
-        id: date.getTime(),
-        title: todo,
-        progress: "Pending",
-      };
-      if (todo.name != "") {
-        this.todos.push(newTodo);
-        this.updateCached();
-      }
-      return;
-    },
-    removeTodo: function (id) {
-      this.todos = this.todos.filter((item) => {
-        if (item.id != id) {
-          return item;
-        }
-        return;
-      });
-      this.updateCached();
-    },
-    updateStatus(todo) {
-      this.todos.map((item) => {
-        if (item.id === todo.id) {
-          item.progress = item.progress === "Pending" ? "Done" : "Pending";
-        }
-        return;
-      });
-      this.updateCached();
-    },
     updateCached: async function () {
       await localStorage.removeItem("todos");
       await localStorage.setItem("todos", JSON.stringify(this.todos));

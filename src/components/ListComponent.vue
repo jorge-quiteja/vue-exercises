@@ -3,27 +3,27 @@
     <ul class="list">
       <li v-for="item in items" :key="item.id">
         <span
-          @click="$emit('onUpdate', item)"
+          @click="updateTodoStatus(item)"
           :class="['subtitle-2 ', item.progress]"
         >
           {{ item.title }}
         </span>
         <div class="buttons">
           <v-btn
-            @click="updateStatus(item)"
+            @click="updateTodoStatus(item)"
             v-if="item.progress === 'Pending'"
             class="success"
           >
             <v-icon>mdi-checkbox-marked-circle</v-icon>
           </v-btn>
           <v-btn
-            @click="updateStatus(item)"
+            @click="updateTodoStatus(item)"
             v-if="item.progress === 'Done'"
             class="secondary"
           >
             <v-icon>mdi-arrow-u-left-bottom</v-icon>
           </v-btn>
-          <v-btn @click="removeItem(item.id)" color="error">
+          <v-btn @click="removeTodo(item.id)" color="error">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </div>
@@ -33,24 +33,24 @@
 </template>
 
 <script>
-import { mapActions} from 'vuex';
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "ListComponent",
   emits: ["onUpdate", "onRemove"],
   props: {
-    items: Array,
+    // items: Array,
   },
   computed: {
-    // ...mapState({
-    //   items: state => state.todos
-    // })
+    ...mapState({
+      items: state => state.todos
+    })
   },
   methods: {
     ...mapActions({
-      updateStatus: 'updateStatus',
-      removeItem: 'removeItem',
-    })
+      updateTodoStatus: "updateTodoStatus",
+      removeTodo: "removeTodo",
+    }),
   },
   watch: {},
 };
