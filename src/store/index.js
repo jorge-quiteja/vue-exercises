@@ -5,14 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    todos: [],
+    filteredTodos: [],
     filterTodos: null,
-    todos: [
-      { id: 1661889443161, title: "Exemplo 1", progress: "Pending" },
-      { id: 1661890676842, title: "Exemplo 2", progress: "Pending" },
-      { id: 1661890677909, title: "Exemplo 3", progress: "Done" },
-      { id: 1661891050039, title: "Exemplo 4", progress: "Done" }
-    ],
-    filteredTodos: []
   },
   getters: {
     todoList(state) {
@@ -32,20 +27,31 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    addTodo({ state, commit }, todoName) {
-      let todosToAdd = state.todos;
+    fetchTodos({ commit }) {
+      return new Promise((resolve, reject) => {
+        var cached = JSON.parse(localStorage.getItem("todos"));
+        if (cached) {
+          commit("setTodos", cached);
+          resolve();
+        }
+        reject();
+      })
+    },
+    addTodo({ state, commit, dispatch }, todoName) {
       let date = new Date();
+      let todosToAdd = state.todos;
 
       let newTodo = {
         id: date.getTime(),
         title: todoName,
         progress: "Pending",
       };
-      todosToAdd.push(newTodo);
 
+      todosToAdd.push(newTodo);
       commit('setTodos', todosToAdd);
+      dispatch('updateCached');
     },
-    updateTodoStatus({ state, commit }, todo) {
+    updateTodoStatus({ state, commit, dispatch }, todo) {
       let updatedTodos = state.todos.filter(t => {
         if (t.id == todo.id) {
           t.progress = t.progress === "Pending" ? "Done" : "Pending";
@@ -54,24 +60,20 @@ export default new Vuex.Store({
       });
 
       commit('setTodos', updatedTodos);
+      dispatch('updateCached');
     },
-    removeTodo({ state, commit }, todoId) {
+    removeTodo({ state, commit, dispatch }, todoId) {
       let todosToRemove = state.todos.filter(t => t.id !== todoId);
 
       commit('setTodos', todosToRemove);
+      dispatch('updateCached');
     },
     setFilter({ commit }, filter) {
       commit('setFilter', filter);
     },
-    // fetchTodos({ commit }) {
-    //   return new Promise((resolve, reject) => {
-    //     var cached = JSON.parse(localStorage.getItem("todos"));
-    //     if (cached) {
-    //       commit("setProducts", cached);
-    //       resolve();
-    //     }
-    //     reject();
-    //   })
-    // },
+    updateCached({ state }) {
+      localStorage.removeItem("todos");
+      localStorage.setItem("todos", JSON.stringify(state.todos));
+    },
   },
 });

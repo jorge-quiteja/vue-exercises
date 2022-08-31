@@ -21,27 +21,6 @@ export default {
     FilterComponent,
     ListComponent,
   },
-  async beforeCreate() {
-    var cached = await JSON.parse(localStorage.getItem("todos"));
-    if (cached) {
-      // this.todos = cached;
-      return;
-    }
-  },
-  data: () => ({
-    // todos: [],
-    // filteredTodos: [],
-  }),
-  methods: {
-    // updateCached: async function () {
-    //   await localStorage.removeItem("todos");
-    //   await localStorage.setItem("todos", JSON.stringify(this.todos));
-    // },
-  },
-  computed: {
-  },
-  watch: {
-  },
 };
 </script>
 
