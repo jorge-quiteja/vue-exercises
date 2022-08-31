@@ -8,11 +8,10 @@
 
 <script>
 export default {
-  name: 'AboutView',
-  components: {
-  },
+  name: "AboutView",
+  components: {},
   data: () => ({}),
-  methods: {}
+  methods: {},
 };
 </script>
 

@@ -61,5 +61,4 @@ export default {
 .v-form {
   width: 90%;
 }
-
 </style>

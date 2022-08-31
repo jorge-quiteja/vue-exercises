@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import NavBarComponent from './components/NavBarComponent.vue'
+import NavBarComponent from "./components/NavBarComponent.vue";
 
 export default {
   components: {
-    NavBarComponent
-  }
-}
+    NavBarComponent,
+  },
+};
 </script>
 
 <style>
@@ -24,7 +24,7 @@ export default {
   margin: 2.5% auto;
   padding: 20px;
 }
-.align-center{ 
+.align-center {
   text-align: center;
 }
 </style>

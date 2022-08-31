@@ -23,7 +23,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   name: "FilterComponent",
   data: () => {
-    return {}
+    return {};
   },
   computed: {
     ...mapState({

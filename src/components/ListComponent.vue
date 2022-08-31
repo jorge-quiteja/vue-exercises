@@ -50,12 +50,12 @@ export default {
     ...mapActions({
       updateTodoStatus: "updateTodoStatus",
       removeTodo: "removeTodo",
-      fetchTodos: "fetchTodos"
+      fetchTodos: "fetchTodos",
     }),
   },
   created() {
     this.fetchTodos();
-  }
+  },
 };
 </script>
 
