@@ -1,10 +1,11 @@
 <template>
   <div>
-    <ul class="list text-start">
+    <ul class="list text-start pa-2">
       <li
-        class="d-flex justify-space-between mt-5 mx-3"
+        class="d-flex justify-space-between ma-3"
         v-for="item in items"
         :key="item.id"
+
       >
         <span
           @click="updateTodoStatus(item)"

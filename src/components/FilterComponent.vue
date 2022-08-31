@@ -1,7 +1,6 @@
 <template>
   <v-container class="d-flex justify-space-around my-0 mx-auto" fluid>
     <v-switch
-      :disabled="filters === 'Pending'"
       v-model="filters"
       color="success"
       direction="vertical"
@@ -9,7 +8,6 @@
       value="Done"
     ></v-switch>
     <v-switch
-      :disabled="filters === 'Done'"
       v-model="filters"
       color="orange"
       label="Pending"
