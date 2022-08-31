@@ -62,6 +62,8 @@ export default {
 <style scoped>
 .list li span {
   cursor: pointer;
+  max-width: 65%;
+  overflow-wrap: anywhere;
 }
 
 .Done {

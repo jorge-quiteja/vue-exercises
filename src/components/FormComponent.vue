@@ -10,9 +10,11 @@
       <v-row>
         <v-col cols="10">
           <v-text-field
+            :rules="rules"
+            counter="40"
+            maxlength="40"
             label="Add new"
             v-model="todoName"
-            :rules="rules"
             hide-details="auto"
             hint="For example, Take Shower"
           >
@@ -36,8 +38,8 @@ export default {
     valid: false,
     todoName: "",
     rules: [
-      (value) => !!value || "Required.",
       (value) => (value && value.length >= 3) || "Min 3 characters",
+      (value) => !!value || "Required",
     ],
   }),
   methods: {
