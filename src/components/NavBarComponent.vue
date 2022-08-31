@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app dark>
-    <div class="align-center">
+    <div class="align-center justify-space-between">
       <v-img
         alt="Vuetify Logo"
         title="Vuetify Logo"
@@ -9,7 +9,7 @@
         width="30"
       />
     </div>
-    <div class="router-links">
+    <div class="d-flex justify-space-between">
       <router-link to="/home">Home</router-link>
       <router-link to="/about">About</router-link>
     </div>
@@ -23,27 +23,15 @@ export default {
 </script>
 
 <style scoped>
-.v-app-bar div {
-  justify-content: space-between;
-}
-
-.router-links {
-  display: flex;
-}
-
 a {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   font-weight: bold;
-  color: white;
+  color: #ffffff;
   text-decoration: none;
   margin-left: 2rem;
 }
 
-a .router-link-exact-active {
-  color: #42b983;
-}
-
 a:visited {
-  color: white;
+  color: #ffffff;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-form
-      class="align-center"
+      class="align-center my-0 mx-auto"
       ref="appForm"
       @submit.prevent="formSubmit"
       v-on:keyup.enter="formSubmit"
@@ -19,7 +19,7 @@
           </v-text-field>
         </v-col>
         <v-col cols="2">
-          <v-btn type="submit">
+          <v-btn class="mt-3" type="submit">
             <v-icon>mdi-plus-circle</v-icon>
           </v-btn>
         </v-col>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex';
+import { mapActions } from "vuex";
 export default {
   name: "FormComponent",
   data: () => ({
@@ -42,10 +42,10 @@ export default {
   }),
   methods: {
     ...mapActions({
-      addTodo: 'addTodo'
+      addTodo: "addTodo",
     }),
     formSubmit: function () {
-      if (this.todoName.length > 2) {
+      if (this.todoName.length > 2 && this.todoName != "") {
         this.addTodo(this.todoName);
         this.$refs.appForm.reset();
         this.$refs.appForm.inputs[0].blur();
@@ -60,10 +60,6 @@ export default {
 <style scoped>
 .v-form {
   width: 90%;
-  margin: 0 auto;
 }
 
-.v-btn {
-  margin-top: 20%;
-}
 </style>
